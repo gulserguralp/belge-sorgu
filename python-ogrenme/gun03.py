@@ -62,7 +62,7 @@ print(topla(3,5))
 
 #varsayılan değer
 def selamla2(ad, mesaj="merhaba"):
-    return f"{mesaj}{ad}"
+    return f"{mesaj} {ad}"
 
 print(selamla2("gulser"))
 print(selamla2("gulser", " günaydın"))

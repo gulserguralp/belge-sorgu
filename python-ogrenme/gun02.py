@@ -24,7 +24,7 @@ print (sayilar[2:]) # 2 den sonra
 #SÖZLÜK 
 ogrenci = {
     "ad": "Gülser",
-    "bolum": "Bişgisayar Mühendisliği",
+    "bolum": "Bilgisayar Mühendisliği",
     "sinif": 4
 
 }
