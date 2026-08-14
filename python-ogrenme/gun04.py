@@ -1,4 +1,4 @@
-# DOSYAYA YAZMA
+    # DOSYAYA YAZMA
 with open("deneme.txt", "w", encoding="utf-8") as dosya:
     dosya.write("Birinci satir\n")
     dosya.write("Ikinci satir\n")
