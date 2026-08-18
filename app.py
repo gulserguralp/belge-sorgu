@@ -21,13 +21,21 @@ def belgeyi_hazirla(dosya):
     tum_metin = ""
     for sayfa in reader.pages:
         tum_metin = tum_metin + sayfa.extract_text()
-    kelimeler = tum_metin.split()
+    cumleler = tum_metin.split(".")
     parcalar = []
-    for i in range(0, len(kelimeler), 40):
-        parcalar.append(" ".join(kelimeler[i:i + 40]))
+    gecici = ""
+    for cumle in cumleler:
+        cumle = cumle.strip()
+        if cumle == "":
+            continue
+        gecici = gecici + cumle + ". "
+        if len(gecici.split()) >= 40:
+            parcalar.append(gecici.strip())
+            gecici = ""
+    if gecici.strip() != "":
+        parcalar.append(gecici.strip())
     embeddingler = model.encode(parcalar)
     return parcalar, embeddingler
-
 
 
 
