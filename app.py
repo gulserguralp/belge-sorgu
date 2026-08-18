@@ -16,8 +16,8 @@ def model_yukle():
 model = model_yukle()
 
 @st.cache_data
-def belgeyi_hazirla():
-    reader = PdfReader("test.pdf")
+def belgeyi_hazirla(dosya):
+    reader = PdfReader(dosya)
     tum_metin = ""
     for sayfa in reader.pages:
         tum_metin = tum_metin + sayfa.extract_text()
@@ -28,13 +28,20 @@ def belgeyi_hazirla():
     embeddingler = model.encode(parcalar)
     return parcalar, embeddingler
 
-parcalar, parca_embeddingleri = belgeyi_hazirla()
-
 
 
 
 st.title("Belge Sorgu Sistemi")
 st.write("PDF belgesine soru sor, yapay zeka cevaplasin.")
+yuklenen = st.file_uploader("PDF yukleyin", type="pdf")
+
+if yuklenen is not None:
+    parcalar, parca_embeddingleri = belgeyi_hazirla(yuklenen)
+else:
+    st.info("Baslamak icin bir PDF yukleyin.")
+    st.stop()
+
+
 
 soru = st.text_input("Sorunuz:")
 
