@@ -55,21 +55,27 @@ soru = st.text_input("Sorunuz:")
 
 if st.button("Sor"):
     soru_embeddingi = model.encode(soru)
-    en_yuksek_skor = -1
-    en_iyi_parca = ""
+    skorlu_parcalar = []
     for i in range(len(parcalar)):
         skor = util.cos_sim(soru_embeddingi, parca_embeddingleri[i]).item()
-        if skor > en_yuksek_skor:
-            en_yuksek_skor = skor
-            en_iyi_parca = parcalar[i]
+        skorlu_parcalar.append((skor, parcalar[i]))
+
+    skorlu_parcalar.sort(reverse=True)
+    en_iyi_uc = skorlu_parcalar[:3]
+
+    baglamlar = ""
+    for skor, parca in en_iyi_uc:
+        baglamlar = baglamlar + parca + "\n\n"
 
     mesaj = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=500,
-        messages=[{"role": "user", "content": f"Asagidaki metne dayanarak soruyu cevapla. Sadece metindeki bilgiyi kullan.\n\nMetin: {en_iyi_parca}\n\nSoru: {soru}"}]
+        messages=[{"role": "user", "content": f"Asagidaki metne dayanarak soruyu cevapla. Sadece metindeki bilgiyi kullan.\n\nMetin: {baglamlar}\n\nSoru: {soru}"}]
     )
 
     st.subheader("Cevap:")
     st.write(mesaj.content[0].text)
-    st.caption(f"Kaynak parca (skor: {en_yuksek_skor:.2f})")
-    st.text(en_iyi_parca)
+    st.caption("Kaynak parcalar:")
+    for skor, parca in en_iyi_uc:
+        st.text(f"(skor: {skor:.2f})")
+        st.text(parca)
