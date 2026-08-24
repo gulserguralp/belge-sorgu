@@ -11,7 +11,7 @@ client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 @st.cache_resource
 def model_yukle():
-    return SentenceTransformer("all-MiniLM-L6-v2")
+     return SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
 
 model = model_yukle()
 
