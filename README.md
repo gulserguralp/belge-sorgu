@@ -1,5 +1,9 @@
 # Belge Sorgu Sistemi
 
+**Canlı demo:** https://belge-sorgu-a92hvdpec6tuvtbp324xpu.streamlit.app/
+
+> Uygulama bir süre kullanılmazsa uyku moduna geçer. Açılan sayfadaki uyandırma butonuna (Yes, get this app back up) basıp yaklaşık 30 saniye bekleyin.
+
 Yüklediğiniz bir PDF belgesine doğal dilde soru sorup, cevabı yalnızca belgenin içeriğine dayalı olarak alabileceğiniz bir yapay zeka uygulaması. Sistem, cevabı belgenin hangi bölümünden ürettiğini de gösterir.
 
 ## Ne İşe Yarar?
